@@ -105,49 +105,49 @@ django_extend_user_models
  
  1 - Champs sur les users
  
-  - username : Champs obligatoires; 30 caractères ou moins. 
+  - __username__ : Champs obligatoires; 30 caractères ou moins. 
                Caractères alphanumériques uniquement (lettres, chiffres et traits de soulignement).
-  - first_name : Optionnel; 30 caractères ou moins.
-  - last_name : Optionnel; 30 caractères ou moins.
-  - email : Optionnel. Adresse e-mail.
-  - password : Champs obligatoires. Mot de passe et métadonnées sur le mot de passe (Django ne stocke
+  - __first_name__ : Optionnel; 30 caractères ou moins.
+  - __last_name__ : Optionnel; 30 caractères ou moins.
+  - __email__ : Optionnel. Adresse e-mail.
+  - __password__ : Champs obligatoires. Mot de passe et métadonnées sur le mot de passe (Django ne stocke
                pas le mot de passe brut). Voir la section «Mots de passe» pour plus d'informations 
                sur cette valeur.
-  - is_staff : Booléen Indique si cet utilisateur peut accéder au site d'administration.
-  - is_active : Booléen Indique si ce compte peut être utilisé pour se connecter. 
+  - __is_staff__ : Booléen Indique si cet utilisateur peut accéder au site d'administration.
+  - __is_active__ : Booléen Indique si ce compte peut être utilisé pour se connecter. 
                 Définissez cet indicateur sur au Falselieu de supprimer des comptes.
-  - is_superuser : Booléen Indique que cet utilisateur dispose de toutes les autorisations 
+  - __is_superuser__ : Booléen Indique que cet utilisateur dispose de toutes les autorisations 
                    sans les attribuer explicitement.
-  - last_login : Une date-heure de la dernière connexion de l'utilisateur. 
+  - __last_login__ : Une date-heure de la dernière connexion de l'utilisateur. 
                  Ceci est réglé sur la date / heure actuelle par défaut.
-  - date_joined	 : Une date et heure indiquant la date de création du compte.
+  - __date_joined__	 : Une date et heure indiquant la date de création du compte.
                    Ce paramètre est défini par défaut sur la date et l'heure actuelles lors de la création du compte.
                    
  2 - Méthodes
  
- - is_authenticated() : Retourne toujours True pour les "vrais" Userobjets. C'est un moyen de savoir si 
+ - __is_authenticated()__ : Retourne toujours True pour les "vrais" Userobjets. C'est un moyen de savoir si 
                         l'utilisateur a été authentifié. Cela n'implique aucune autorisation et ne 
                         vérifie pas si l'utilisateur est actif. Cela indique seulement que l'utilisateur 
                         s'est authentifié avec succès.
- - is_anonymous() : Renvoie True uniquement pour les AnonymousUserobjets (et False pour les «vrais» Userobjets). 
+ - __is_anonymous()__ : Renvoie True uniquement pour les AnonymousUserobjets (et False pour les «vrais» Userobjets). 
                     Généralement, vous devriez préférer utiliser is_authenticated() a cette méthode.
- - get_full_name() : Renvoie le first_name plus le last_name, avec un espace entre les deux.
- - set_password(passwd) : Définit le mot de passe de l'utilisateur sur la chaîne brute donnée, 
+ - __get_full_name()__ : Renvoie le first_name plus le last_name, avec un espace entre les deux.
+ - __set_password(passwd)__ : Définit le mot de passe de l'utilisateur sur la chaîne brute donnée, 
                         en prenant en charge le hachage du mot de passe. Cela ne sauve pas réellement l' Userobjet.
- - check_password(passwd) : Retourne True si la chaîne brute donnée est le mot de passe correct pour l'utilisateur. 
+ - __check_password(passwd)__ : Retourne True si la chaîne brute donnée est le mot de passe correct pour l'utilisateur. 
                             Ceci prend en charge le hachage du mot de passe lors de la comparaison.
- - get_group_permissions() : Renvoie une liste de chaînes de permission que l'utilisateur possède via les groupes 
+ - __get_group_permissions()__ : Renvoie une liste de chaînes de permission que l'utilisateur possède via les groupes 
                              auxquels il appartient.
-  - get_all_permissions() : Renvoie une liste des chaînes d'autorisation dont dispose l'utilisateur, à la fois par 
+  - __get_all_permissions()__ : Renvoie une liste des chaînes d'autorisation dont dispose l'utilisateur, à la fois par 
                             le biais d'autorisations de groupe et d'utilisateurs.
-  - has_perm(perm) : Retourne Truesi l'utilisateur a l'autorisation spécifiée, où permest dans le format "package.codename".                        Si l'utilisateur est inactif, cette méthode sera toujours renvoyée False.
-  - has_perms(perm_list) : Renvoie Truesi l'utilisateur possède toutes les autorisations spécifiées. 
+  - __has_perm(perm)__ : Retourne Truesi l'utilisateur a l'autorisation spécifiée, où permest dans le format "package.codename".                        Si l'utilisateur est inactif, cette méthode sera toujours renvoyée False.
+  - __has_perms(perm_list)__ : Renvoie Truesi l'utilisateur possède toutes les autorisations spécifiées. 
                            Si l'utilisateur est inactif, cette méthode sera toujours renvoyée False.
-  - has_module_perms(app_label) : Retourne Truesi l'utilisateur a des permissions dans la donnée app_label. 
+  - __has_module_perms(app_label)__ : Retourne Truesi l'utilisateur a des permissions dans la donnée app_label. 
                                   Si l'utilisateur est inactif, cette méthode sera toujours renvoyée False.
-  - get_and_delete_messages() : Retourne une liste d' Messageobjets dans la file d'attente de l'utilisateur 
+  - __get_and_delete_messages()__ : Retourne une liste d' Messageobjets dans la file d'attente de l'utilisateur 
                                 et supprime les messages de la file d'attente.
-  - email_user(subj, msg) : Envoie un courrier électronique à l'utilisateur. Cet email est envoyé depuis 
+  - __email_user(subj, msg)__ : Envoie un courrier électronique à l'utilisateur. Cet email est envoyé depuis 
                             le DEFAULT_FROM_EMAIL paramètre. Vous pouvez également passer un troisième argument from_email,                                pour redéfinir l'adresse de l'expéditeur sur l'e-mail.
  
  3 - Verification de connexion et permission (les decorateurs)
