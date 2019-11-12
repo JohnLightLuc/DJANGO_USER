@@ -159,7 +159,8 @@ django_extend_user_models
          @login_required
          def my_view(request):
               # ...
-     - Verification de permissions
+              
+   - Verification de permissions
      
             def vote(request):
                 if request.user.is_authenticated() and request.user.has_perm('polls.can_vote')):
@@ -167,7 +168,7 @@ django_extend_user_models
                 else:
                         return HttpResponse("You can't vote in this poll.")
                         
-     - user_passes_test
+   - user_passes_test
         
                 def user_can_vote(user):
                         return user.is_authenticated() and user.has_perm("polls.can_vote")
@@ -177,7 +178,7 @@ django_extend_user_models
                         # Code here can assume a logged-in user with the correct permission.
                         ...
                   
-     - permission_required()
+   - permission_required()
         
             from django.contrib.auth.decorators import permission_required
 
