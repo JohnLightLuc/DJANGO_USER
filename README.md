@@ -255,3 +255,5 @@ django_extend_user_models
             {% endfor %}
         </ul>
         {% endif %}
+
+[Source](https://django-book.readthedocs.io/en/latest/chapter14.html)
